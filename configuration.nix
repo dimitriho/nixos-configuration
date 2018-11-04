@@ -96,19 +96,17 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.dimitri = {
-    extraGroups = [ "wheel" "docker" ];
-    isNormalUser = true;
-    uid = 1000;
-    shell = pkgs.fish;
-  };
-
-  users.users.test = {
-    extraGroups = [ "wheel" ];
-    isNormalUser = true;
-    uid = 1001;
-    shell = pkgs.fish;
-  };
+  users.users =
+    let user = id: {
+      extraGroups = [ "wheel" "docker" ];
+      isNormalUser = true;
+      uid = id;
+      shell = pkgs.fish;
+    };
+    in {
+      dimitri = user 1000;
+      test = user 1001;
+    };
 
   fileSystems."/storage" = {
     fsType = "ntfs";
