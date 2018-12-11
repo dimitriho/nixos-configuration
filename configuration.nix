@@ -84,7 +84,7 @@
   services.xserver = {
     enable = true;
     layout = "us";
-    xkbVariant = "altgr-intl";
+    xkbVariant = "alt-intl";
     xkbOptions = "eurosign:e";
     videoDrivers = [ "nvidia" ];
 
@@ -94,6 +94,8 @@
     };
     desktopManager.plasma5.enable = true;
   };
+
+  security.sudo.wheelNeedsPassword = false;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users =
