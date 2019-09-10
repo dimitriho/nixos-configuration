@@ -22,6 +22,7 @@
   boot.loader.grub.useOSProber = true;
 
   networking.networkmanager.enable = true;
+  networking.nameservers = [ "8.8.8.8" "8.8.4.4" ];
   # networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -42,6 +43,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    file
     vim
     fish
     git
@@ -88,7 +90,7 @@
   services.xserver = {
     enable = true;
     layout = "us";
-    xkbVariant = "alt-intl";
+    xkbVariant = "altgr-intl";
     xkbOptions = "eurosign:e";
     videoDrivers = [ "nvidia" ];
 
@@ -132,6 +134,6 @@
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
-  system.stateVersion = "18.09"; # Did you read the comment?
+  system.stateVersion = "19.03"; # Did you read the comment?
 
 }
